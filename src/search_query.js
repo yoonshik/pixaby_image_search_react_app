@@ -1,4 +1,4 @@
-export async function fetchImageSearchAsync(search_phrase) {
+export async function fetchImageSearchAsync(current_data, search_phrase, page) {
   const BASE_URL = "https://pixabay.com/api/?";
 
   const API_KEY = "32047512-e706c583a56a5814fbccd84fd";
@@ -13,7 +13,12 @@ export async function fetchImageSearchAsync(search_phrase) {
 
   params["image_type"] = "photo";
 
+  if (page) {
+    params["page"] = page
+  }
 
+  params["per_page"] = 20;
+  
   let url_params = "";
 
   for (const [k, v] of Object.entries(params)) {
@@ -25,7 +30,9 @@ export async function fetchImageSearchAsync(search_phrase) {
 
   let response = await fetch(url);
   let data = await response.json();
-  return parseImageSearchResults(data);
+  let new_data = parseImageSearchResults(data);
+  // console.log("search_query.js", current_data, new_data);
+  return current_data.concat(new_data);
 }
 
 function parseImageSearchResults(data) {
