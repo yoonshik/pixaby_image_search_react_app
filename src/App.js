@@ -68,6 +68,11 @@ function Gallery(props) {
       <div className={imageDetails ? "theater open" : "theater"}>
         <img src={imageDetails ? imageDetails["src"] : ""}/>
         <CloseIcon onClick={() => setImageDetails(null)}/>
+        <div className="owner">
+          <img src={imageDetails && imageDetails["userImageURL"]? imageDetails["userImageURL"] : ""} style={{visibility: (imageDetails && imageDetails["userImageURL"]) ? 'visible' : 'hidden' }} />
+          <p>{imageDetails ? imageDetails["user_name"] : ""}</p>
+          <p>{imageDetails && imageDetails["tags"] ? ": \"" + imageDetails["tags"] + "\"" : ""}</p>
+        </div>
       </div>
       <div className="gallery">
         {props.searchResults.map((item, index)=>{

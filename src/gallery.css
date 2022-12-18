@@ -80,3 +80,30 @@
   color: #ffffff;
   cursor: pointer;
 }
+
+.theater .owner {
+  position: fixed;
+  bottom: 0%;
+  color: #ffffff;
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 0px;
+  margin: 0px;
+  border-radius: 10px;
+  padding-right: 10px;
+}
+
+.theater .owner img{
+  display: block;
+  box-sizing: content-box;
+  width: 2rem;
+  height: 2rem;
+  padding: 10px;
+  border-radius: 90%;
+}
+
+.theater .owner p{
+  display: block;
+  padding: 0;
+  padding-left: 2px;
+}
