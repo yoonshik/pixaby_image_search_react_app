@@ -13,7 +13,6 @@ export async function fetchImageSearchAsync(search_phrase) {
 
   params["image_type"] = "photo";
 
-  params["per_page"] = 20;
 
   let url_params = "";
 
@@ -26,9 +25,21 @@ export async function fetchImageSearchAsync(search_phrase) {
 
   let response = await fetch(url);
   let data = await response.json();
-  return data ? data.hits : [];
+  return parseImageSearchResults(data);
 }
 
-//fetchImageSearchAsync("yellow flowers")
-//  .then(data => console.log(data))
-//  .then(reason => console.log(reason != null ? reason.message : "No reason"));
+function parseImageSearchResults(data) {
+  let result = [];
+  for (let i = 0; i < data.hits.length; i++) {
+    let hit = data.hits[i];
+    let image = {};
+    image["src"] = hit["largeImageURL"];
+    image["width"] = hit["imageWidth"];
+    image["height"] = hit["imageHeight"];
+    image["tags"] = hit["tags"];
+    image["user_name"] = hit["user"];
+    image["userImageURL"] = hit["userImageURL"];
+    result.push(image);
+  }
+  return result;
+}

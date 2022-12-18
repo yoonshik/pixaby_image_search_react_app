@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import { fetchImageSearchAsync } from './search_query.js'
+import './gallery.css';
 
 function App() {
   const [searchPhrase, setSearchPhrase] = useState("");
@@ -19,6 +20,7 @@ function App() {
   return (
     <>
       <SearchBar handleSearchRequest={handleSearchRequest} setSearchPhrase={setSearchPhrase}/>
+      <Gallery searchResults={searchResults}/>
     </>
   );
 }
@@ -40,6 +42,21 @@ function SearchBar(props) {
       <button type="submit" style={{marginLeft:1, width:"fill"}} onClick={(e) => handleSearchRequest}>Submit</button>
     </form>
   );
+}
+
+function Gallery(props) {
+
+  return(
+    <div className="gallery">
+      {props.searchResults.map((item, index)=>{
+        return(
+          <div className="pics" key={index}>
+            <img src={item["src"]} style={{width: '100%'}}/>
+          </div>
+        )
+      })}
+    </div>
+  )
 }
 
 export default App;
