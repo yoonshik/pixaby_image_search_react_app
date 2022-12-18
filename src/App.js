@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { fetchImageSearchAsync } from './search_query.js'
 import './gallery.css';
 import CloseIcon from '@mui/icons-material/Close';
@@ -51,6 +51,17 @@ function Gallery(props) {
   const showImageDetails = (searchResult) => {
     setImageDetails(searchResult);
   }
+
+  const handler = (e) => {
+    if (e.key == "Escape"){
+      setImageDetails(null);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('keydown', handler, false);
+    return () => window.removeEventListener('keydown', handler, false);
+  }, []);
 
   return(
     <>
