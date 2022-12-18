@@ -45,17 +45,27 @@ function SearchBar(props) {
 }
 
 function Gallery(props) {
+  const [imageDetails, setImageDetails] = useState(null);
+
+  const showImageDetails = (searchResult) => {
+    setImageDetails(searchResult);
+  }
 
   return(
-    <div className="gallery">
-      {props.searchResults.map((item, index)=>{
-        return(
-          <div className="pics" key={index}>
-            <img src={item["src"]} style={{width: '100%'}}/>
-          </div>
-        )
-      })}
-    </div>
+    <>
+      <div className={imageDetails ? "theater open" : "theater"}>
+        <img src={imageDetails ? imageDetails["src"] : ""}/>
+      </div>
+      <div className="gallery">
+        {props.searchResults.map((item, index)=>{
+          return(
+            <div className="pics" key={index} onClick={()=> showImageDetails(item)}>
+              <img src={item["src"]} style={{width: '100%'}}/>
+            </div>
+          )
+        })}
+      </div>
+    </>
   )
 }
 
