@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { fetchImageSearchAsync } from './search_query.js'
 import './gallery.css';
+import CloseIcon from '@mui/icons-material/Close';
 
 function App() {
   const [searchPhrase, setSearchPhrase] = useState("");
@@ -55,6 +56,7 @@ function Gallery(props) {
     <>
       <div className={imageDetails ? "theater open" : "theater"}>
         <img src={imageDetails ? imageDetails["src"] : ""}/>
+        <CloseIcon onClick={() => setImageDetails(null)}/>
       </div>
       <div className="gallery">
         {props.searchResults.map((item, index)=>{

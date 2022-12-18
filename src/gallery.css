@@ -69,3 +69,14 @@
   box-sizing: border-box;
   margin: 0 auto;
 }
+
+.theater.open svg{
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  width: 2rem;
+  height: 2rem;
+  background-color: rgba(0, 0, 0, 0.4);
+  color: #ffffff;
+  cursor: pointer;
+}
